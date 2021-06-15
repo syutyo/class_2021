@@ -43,6 +43,7 @@ void file_read(void){
 	int i,j, num=0, count;
 	//ターゲットデータの読み込み
 	for(num = 0;num < 100; num++){
+		// ./はこのプログラムがあるディレクトリからという意味になっています
 		sprintf(path, "./city_mcepdata/city011/city011_%.3d.txt", num+1);  // ここをいじってファイル12,21,22を選んでる(scanfを使って指定できるかも)
 		//ファイルのエラーを知らせるコード
 		if((fp1 = fopen(path,"r")) == NULL){
