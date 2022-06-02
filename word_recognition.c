@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-//DPマッチングの最終版
+//DPマッチングの最終版(関数を作って読み込んでるタイプ)
 
 struct tango_data{
 	char file_name[20];
@@ -42,7 +42,7 @@ int main(void){
 		if(!strcmp(t_data[num_1].loc, input_data[min_num_2].loc)){
 			correct++;
 		}else{
-			printf("%s %s\n",t_data[num_1].loc,input_data[min_num_2].loc);
+			printf("目標 %s 推測 %s\n",t_data[num_1].loc,input_data[min_num_2].loc);
 		} 
 		//printf("%s  %s\n", t_data[num_1].loc,input_data[min_num_2].loc);	
 	}
@@ -54,9 +54,9 @@ int main(void){
 void file_read(void){
 	FILE *fp1;
 	char path[100];
-	int i,j, num=0, count;
+	int i,j, num, count;
 	for(num = 0;num < 100; num++){
-		sprintf(path, "./city_mcepdata/city022/city022_%.3d.txt", num+1);
+		sprintf(path, "./city_mcepdata/city011/city011_%.3d.txt", num+1);
 		if((fp1 = fopen(path,"r")) == NULL){
 			printf("ファイルを開けませんでした\n");
 			exit(1);
@@ -72,7 +72,7 @@ void file_read(void){
 		fclose(fp1);
 	}
 	for(num = 0;num < 100; num++){
-		sprintf(path, "./city_mcepdata/city021/city021_%.3d.txt", num+1);
+		sprintf(path, "./city_mcepdata/city022/city022_%.3d.txt", num+1);
 		if((fp1 = fopen(path,"r")) == NULL){
 			printf("ファイルを開けませんでしたyo\n");
 			exit(1);
@@ -126,7 +126,7 @@ void dynamic(int num_1,int num_2){
 		for(j=0;j<input_data[num_2].size-1;j++){
 			vertical = result[i][j+1] + kyori_data[i+1][j+1];
 			side = result[i+1][j] + kyori_data[i+1][j+1];
-			diagonal = result[i][j] + kyori_data[i+1][j+1]*2;
+			diagonal = result[i][j] + kyori_data[i+1][j+1]* 2;
 			min = vertical;
 			if(min > side)
 				min = side;
